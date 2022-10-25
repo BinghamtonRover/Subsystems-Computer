@@ -51,4 +51,3 @@ add_subdirectory(src/rover_control)
 
 
 add_subdirectory(src/subsystem)
-add_subdirectory(src/video)
