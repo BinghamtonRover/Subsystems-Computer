@@ -1,6 +1,6 @@
 [submodule "src/network"]
 	path = src/network
 	url = https://github.com/BinghamtonRover/Transport-Protocols
-[submodule "src/ext/nanogui"]
-	path = src/ext/nanogui
-	url = git@github.com:mitsuba-renderer/nanogui.git
+[submodule "src/video"]
+	path = src/video
+	url = git@github.com:BinghamtonRover/Video.git
