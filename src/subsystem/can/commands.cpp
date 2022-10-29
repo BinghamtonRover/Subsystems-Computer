@@ -147,11 +147,9 @@ void parse_environmental_analysis_information(EAInformation& write_to, uint64_t 
 //Create a can frame
 can_frame get_can_frame(int modifier, Node device, Command command, int num_bytes, unsigned int data) {
     can_frame frame;
+    memset(&frame,0,sizeof(can_frame));
     frame.can_id = command | (device << 5) | (modifier << 8);
     frame.can_dlc = num_bytes;
-    frame.__pad = 0;
-    frame.__res0 = 0;
-    frame.__res1 = 0;
     for (int i = 0; i < 4 && i < num_bytes; i++) {
         frame.data[i] = (data >> (8 * (3 - i))) & 0xFF;
     }
@@ -164,11 +162,8 @@ can_frame get_can_frame(int modifier, Node device, Command command, int num_byte
 //Create a frame for receiving
 can_frame get_can_request_frame(int modifier, Node device, Command command, float f) {
     can_frame frame;
+    memset(&frame,0,sizeof(can_frame));
     frame.can_id = (0x40000000) | command | (device << 5) | (modifier << 8);
-    frame.can_dlc = 0;
-    frame.__pad = 0;
-    frame.__res0 = 0;
-    frame.__res1 = 0;
     union { unsigned int ul; float fl; } conv = { .fl = f };
     for (int i = 0; i < 4; i++) {
         frame.data[i] = (conv.ul >> (8 * (3 - i))) & 0xFF;
